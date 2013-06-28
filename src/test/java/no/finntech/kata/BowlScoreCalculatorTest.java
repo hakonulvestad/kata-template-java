@@ -34,7 +34,14 @@ public class BowlScoreCalculatorTest {
         }
         int score = bowlScoreCalculator.calculateScore(frames);
         assertThat(score, is(10));
+    }
 
-
+    @Test
+    public void twoFramesSpareFirst() throws Exception {
+        List<BowlingFrame> frames = new ArrayList<>();
+        frames.add(new BowlingFrame(5, 5));
+        frames.add(new BowlingFrame(2, 2));
+        int score = bowlScoreCalculator.calculateScore(frames);
+        assertThat(score, is(16));
     }
 }
