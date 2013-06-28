@@ -4,6 +4,10 @@ import java.util.List;
 
 public class BowlScoreCalculator {
     public int calculateScore(List<BowlingFrame> frames) {
-        return 0;
+        int score = 0;
+        for (BowlingFrame frame : frames) {
+            score += frame.getFirst();
+        }
+        return score;
     }
 }

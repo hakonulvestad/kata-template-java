@@ -25,4 +25,16 @@ public class BowlScoreCalculatorTest {
         assertThat(score, is(10));
     }
 
+    @Test
+    public void all1sOnSecondThrow() throws Exception {
+        List<BowlingFrame> frames = new ArrayList<>();
+        for(int i = 0; i < 10; i++) {
+            frames.add(new BowlingFrame(0, 1));
+
+        }
+        int score = bowlScoreCalculator.calculateScore(frames);
+        assertThat(score, is(10));
+
+
+    }
 }
