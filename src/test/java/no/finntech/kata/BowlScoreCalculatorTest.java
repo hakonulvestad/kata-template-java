@@ -74,4 +74,23 @@ public class BowlScoreCalculatorTest {
         assertThat(score, is(42));
     }
 
+    @Test
+    public void twelveFramesAllStrikes() throws Exception {
+        List<BowlingFrame> frames = new ArrayList<>();
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        int score = bowlScoreCalculator.calculateScore(frames);
+        assertThat(score, is(300));
+    }
+
 }
