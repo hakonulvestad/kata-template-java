@@ -27,6 +27,14 @@ public class BowlingFrame {
     }
 
     public boolean isSpare() {
-          return first+second == 10;
+          return first+second == 10 && first != 10;
+    }
+
+    public boolean isStrike() {
+        return first == 10;
+    }
+
+    public int getTotal() {
+        return first+second;
     }
 }

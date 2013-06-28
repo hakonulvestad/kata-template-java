@@ -48,10 +48,30 @@ public class BowlScoreCalculatorTest {
     @Test
     public void twoFramesStrikeFirst() throws Exception {
         List<BowlingFrame> frames = new ArrayList<>();
-        frames.add(new BowlingFrame(10,0));
+        frames.add(new BowlingFrame(10, 0));
         frames.add(new BowlingFrame(2, 2));
         int score = bowlScoreCalculator.calculateScore(frames);
         assertThat(score, is(18));
+    }
+
+    @Test
+    public void threeFramesStrikeSpear2() throws Exception {
+        List<BowlingFrame> frames = new ArrayList<>();
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(2, 8));
+        frames.add(new BowlingFrame(2, 2));
+        int score = bowlScoreCalculator.calculateScore(frames);
+        assertThat(score, is(36));
+    }
+
+    @Test
+    public void threeFramesStrikeStrike2() throws Exception {
+        List<BowlingFrame> frames = new ArrayList<>();
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(10, 0));
+        frames.add(new BowlingFrame(2, 2));
+        int score = bowlScoreCalculator.calculateScore(frames);
+        assertThat(score, is(42));
     }
 
 }
