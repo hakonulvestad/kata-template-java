@@ -5,6 +5,8 @@ public class BowlingFrame {
     private int first;
     private int second;
 
+    private BowlingFrame next;
+
     public BowlingFrame(int first, int second) {
         this.first = first;
         this.second = second;
@@ -36,5 +38,32 @@ public class BowlingFrame {
 
     public int getTotal() {
         return first+second;
+    }
+
+    public void setNext(BowlingFrame next) {
+        this.next = next;
+    }
+
+    public boolean hasNext() {
+        return next != null;
+    }
+
+    public BowlingFrame getNext() {
+        return next;
+    }
+
+    public int getScore() {
+        return getScore(3);
+    }
+
+    private int getScore(int counter) {
+        int total = getTotal();
+        if(isStrike() && hasNext() && counter > 1) {
+            total += next.getScore(counter-1);
+        } else if(isSpare() && hasNext()) {
+           total += next.getFirst();
+        }
+
+        return total;
     }
 }

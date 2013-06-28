@@ -1,10 +1,5 @@
 package no.finntech.kata;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hamcrest.core.Is;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -16,81 +11,138 @@ public class BowlScoreCalculatorTest {
 
     @Test
     public void all1sOnFirstThrow() {
-        List<BowlingFrame> frames = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            frames.add(new BowlingFrame(1, 0));
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0)
+                .frame(1, 0).build();
 
-        }
-        int score = bowlScoreCalculator.calculateScore(frames);
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
         assertThat(score, is(10));
     }
 
     @Test
     public void all1sOnSecondThrow() throws Exception {
-        List<BowlingFrame> frames = new ArrayList<>();
-        for(int i = 0; i < 10; i++) {
-            frames.add(new BowlingFrame(0, 1));
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1)
+                .frame(0, 1).build();
 
-        }
-        int score = bowlScoreCalculator.calculateScore(frames);
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
         assertThat(score, is(10));
     }
 
     @Test
     public void twoFramesSpareFirst() throws Exception {
-        List<BowlingFrame> frames = new ArrayList<>();
-        frames.add(new BowlingFrame(5, 5));
-        frames.add(new BowlingFrame(2, 2));
-        int score = bowlScoreCalculator.calculateScore(frames);
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(5, 5)
+                .frame(2, 2).build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
         assertThat(score, is(16));
     }
 
     @Test
     public void twoFramesStrikeFirst() throws Exception {
-        List<BowlingFrame> frames = new ArrayList<>();
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(2, 2));
-        int score = bowlScoreCalculator.calculateScore(frames);
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(10, 0)
+                .frame(2, 2).build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
         assertThat(score, is(18));
     }
 
     @Test
     public void threeFramesStrikeSpear2() throws Exception {
-        List<BowlingFrame> frames = new ArrayList<>();
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(2, 8));
-        frames.add(new BowlingFrame(2, 2));
-        int score = bowlScoreCalculator.calculateScore(frames);
-        assertThat(score, is(36));
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(10, 0)
+                .frame(2, 8)
+                .frame(2, 2).build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
+        assertThat(score, is(38));
     }
 
     @Test
     public void threeFramesStrikeStrike2() throws Exception {
-        List<BowlingFrame> frames = new ArrayList<>();
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(2, 2));
-        int score = bowlScoreCalculator.calculateScore(frames);
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(2, 2).build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
         assertThat(score, is(42));
     }
 
     @Test
     public void twelveFramesAllStrikes() throws Exception {
-        List<BowlingFrame> frames = new ArrayList<>();
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        frames.add(new BowlingFrame(10, 0));
-        int score = bowlScoreCalculator.calculateScore(frames);
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0).build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
         assertThat(score, is(300));
+    }
+
+    @Test
+    public void allStrikesSomethingElseLast() throws Exception {
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(0, 9).build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
+        assertThat(score, is(288));
+    }
+
+    @Test
+    public void allStrikesSpareLast() {
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(8, 2).build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
+        assertThat(score, is(290));
     }
 
 }
