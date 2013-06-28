@@ -145,4 +145,24 @@ public class BowlScoreCalculatorTest {
         assertThat(score, is(290));
     }
 
+    @Test
+    public void SpareLastStrike() {
+        BowlingFrame firstFrame = new FrameBuilder()
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(10, 0)
+                .frame(2, 8)
+                .frame(10, 0)
+                .build();
+
+        int score = bowlScoreCalculator.calculateScore(firstFrame);
+        assertThat(score, is(290));
+    }
+
 }
