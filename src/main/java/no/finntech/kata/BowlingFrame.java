@@ -25,4 +25,8 @@ public class BowlingFrame {
     public void setSecond(int second) {
         this.second = second;
     }
+
+    public boolean isSpare() {
+          return first+second == 10;
+    }
 }
